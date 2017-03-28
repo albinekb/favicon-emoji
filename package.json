@@ -6,7 +6,8 @@
   "dependencies": {
     "args": "^2.4.0",
     "emoji-img": "^1.0.0",
-    "fs-promise": "^2.0.2"
+    "fs-promise": "^2.0.2",
+    "opn": "^4.0.2"
   },
   "bin": {
     "favicon-emoji": "cli.js"
