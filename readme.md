@@ -1,4 +1,4 @@
-# 🌴 favicon-emoji
+# :palm_tree: favicon-emoji
 
 ## Install
 
