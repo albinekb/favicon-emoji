@@ -18,12 +18,11 @@ if (flags.list) {
   process.exit(0)
 }
 
-if (flags.emoji && flags.emoji.includes('-')) flags.emoji = flags.emoji.replace(/-/g, '_')
-
-if (flags.emoji && flags.emoji.includes(':')) throw new Error('Please specify emoji without :')
-
 if (!flags.emoji) throw new Error('No emoji specified')
 if (!flags.destination) throw new Error('No destination specified')
+
+if (flags.emoji.includes('-')) flags.emoji = flags.emoji.replace(/-/g, '_')
+if (flags.emoji.includes(':')) throw new Error('Please specify emoji without :')
 if (!emojis.has(flags.emoji)) throw new Error(`Emoji ${flags.emoji} not found`)
 
 const dest = path.resolve(flags.destination)
