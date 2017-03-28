@@ -1,6 +1,7 @@
 # :palm_tree: favicon-emoji
 
 Generate an awesome emoji-favicon
+
 example at: [https://✨🌴.ws/](https://xn--0ci2518m.ws/)
 
 ## Install
