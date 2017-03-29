@@ -1,4 +1,5 @@
-# :palm_tree: favicon-emoji
+# :palm_tree: favicon-emoji [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 
 Generate an awesome emoji-favicon
 
