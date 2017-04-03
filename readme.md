@@ -9,7 +9,7 @@ example at: [https://✨🌴.ws/](https://xn--0ci2518m.ws/)
 
 ### yarn
 ```sh
-yarn add global favicon-emoji
+yarn global add favicon-emoji
 ```
 
 ### npm
