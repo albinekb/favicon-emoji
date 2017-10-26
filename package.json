@@ -5,9 +5,13 @@
   "license": "MIT",
   "dependencies": {
     "args": "^2.4.0",
+    "data-uri-to-buffer": "^2.0.0",
     "emoji-img": "^1.0.0",
     "fs-promise": "^2.0.2",
-    "opn": "^4.0.2"
+    "opn": "^4.0.2",
+    "puppeteer": "^0.12.0",
+    "sharp": "^0.18.4",
+    "to-ico": "^1.1.5"
   },
   "bin": {
     "favicon-emoji": "cli.js"
