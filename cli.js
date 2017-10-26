@@ -1,39 +1,44 @@
 #!/usr/bin/env node
-const args = require('args')
+const fs = require('fs')
 const path = require('path')
 
-const fs = require('fs')
-const { join } = require('path')
-const toIco = require('to-ico')
-const puppeteer = require('puppeteer')
+const neodoc = require('neodoc')
 const sharp = require('sharp')
+const toIco = require('to-ico')
+
 const render = require('./lib/render')
 
-args
-  .option('emoji', 'choose emoji', '✨')
-  .option('destination', 'favicon destination', './favicon.ico')
-  .option('png', 'save png too', './favicon.png')
-  .option('list', 'show list of available emojis')
+const usage = `
+🌴 favicon-emoji
 
-const flags = args.parse(process.argv)
+Usage:
+  favicon-emoji [options]
 
-if (flags.list) {
+Options:
+  -d, --destination <value>  favicon destination     [default: "./favicon.ico"]
+  -e, --emoji <value>        choose emoji            [default: "✨"]
+  -h, --help                 Output usage information
+  -l, --list                 show list of available emojis
+  -p, --png <value>          png output path         [default: "./favicon.png"]
+  -v, --version              Output the version number
+`
+
+const args = neodoc.run(usage)
+
+if (args['--list']) {
   require('opn')('https://www.webpagefx.com/tools/emoji-cheat-sheet/')
   console.log('🕸 Opened emoji cheat sheet in browser')
   process.exit(0)
 }
 
-if (!flags.emoji) throw new Error('No emoji specified')
-if (!flags.destination) throw new Error('No destination specified')
+// FIXME: Add support for entering emoji shortname (with or without :)
+// if (args['--emoji'].includes('-')) args['--emoji'] = args['--emoji'].replace(/-/g, '_')
+// if (args['--emoji'].startsWith(':') && args['--emoji'].endsWith(':')) args['--emoji'] = args['--emoji'].slice(1, -1)
 
-if (flags.emoji.includes('-')) flags.emoji = flags.emoji.replace(/-/g, '_')
-if (flags.emoji.includes(':')) throw new Error('Please specify emoji without :')
-
-if (flags.emoji && flags.destination) {
-  const dest = path.resolve(flags.destination)
-  const pngDest = flags.png && path.resolve(flags.png)
-  const fsp = require('fs-promise')
-  const emoji = flags.emoji
+if (args['--emoji'] && args['--destination']) {
+  const dest = path.resolve(args['--destination'])
+  const pngDest = path.resolve(args['--png'])
+  const emoji = args['--emoji']
 
   const start = Date.now()
   const hrstart = process.hrtime()
@@ -60,8 +65,8 @@ if (flags.emoji && flags.destination) {
 
       console.log(`
 Saved favicon.ico and favicon.png
-${join(process.cwd(), flags.destination)}
-${pngDest ? pngDest : ''}
+${dest}
+${pngDest}
 Execution time: ${end / 1000}s
 Execution time (hr): ${hrend[0]}s ${hrend[1] / 1000000}ms
     `)
