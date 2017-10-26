@@ -2,7 +2,7 @@
 
 Generate an awesome emoji-favicon
 
-example at: [https://✨🌴.ws/](https://xn--0ci2518m.ws/)
+example at: [deseat.me](https://deseat.me/)
 
 ## Install
 
