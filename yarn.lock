@@ -249,6 +249,10 @@ emoji-img@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/emoji-img/-/emoji-img-1.0.0.tgz#6b62407f3a46c02c10888c28929e46a3bf2fde11"
 
+emojilib@^2.2.9:
+  version "2.2.9"
+  resolved "https://registry.yarnpkg.com/emojilib/-/emojilib-2.2.9.tgz#ec5722689fc148f56422c14b0dc16a901d446b75"
+
 es6-promise@^3.0.2:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-3.3.1.tgz#a08cdde84ccdbf34d027a1451bc91d4bcd28a613"

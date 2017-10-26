@@ -2,11 +2,26 @@
 const fs = require('fs')
 const path = require('path')
 
+const emojilib = require('emojilib')
 const neodoc = require('neodoc')
 const sharp = require('sharp')
 const toIco = require('to-ico')
 
 const render = require('./lib/render')
+
+function findEmoji (input) {
+  if (/^[a-z0-9:_-]+$/.test(input)) {
+    const id = (input.startsWith(':') && input.endsWith(':') ? input.slice(1, -1) : input)
+
+    if (!emojilib.lib[id]) {
+      throw new Error(`Unknown emoji "${id}"`)
+    }
+
+    return emojilib.lib[id].char
+  }
+
+  return input
+}
 
 const usage = `
 🌴 favicon-emoji
@@ -31,14 +46,10 @@ if (args['--list']) {
   process.exit(0)
 }
 
-// FIXME: Add support for entering emoji shortname (with or without :)
-// if (args['--emoji'].includes('-')) args['--emoji'] = args['--emoji'].replace(/-/g, '_')
-// if (args['--emoji'].startsWith(':') && args['--emoji'].endsWith(':')) args['--emoji'] = args['--emoji'].slice(1, -1)
-
 if (args['--emoji'] && args['--destination']) {
   const dest = path.resolve(args['--destination'])
   const pngDest = path.resolve(args['--png'])
-  const emoji = args['--emoji']
+  const emoji = findEmoji(args['--emoji'])
 
   const start = Date.now()
   const hrstart = process.hrtime()
