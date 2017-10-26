@@ -21,7 +21,7 @@ npm install --global favicon-emoji
 
 ### Generate favicon
 ```sh
-favicon-emoji --emoji palm-tree
+favicon-emoji --emoji ✨
 
 > ✨ Done, emoji favicon saved to ./favicon.ico
 ```
@@ -40,7 +40,7 @@ favicon-emoji help
   Options:
 
     -d, --destination [value]  favicon destination (defaults to "./favicon.ico")
-    -e, --emoji [value]        choose emoji (defaults to "palm-tree")
+    -e, --emoji [value]        choose emoji (defaults to "✨")
     -h, --help                 Output usage information
     -l, --list                 show list of available emojis
     -v, --version              Output the version number
