@@ -64,9 +64,9 @@ if (args['--emoji'] && args['--destination']) {
         [16, 32, 48, 64, 128, 256].map(size =>
           sharp(image)
             .resize(size, size)
-            .toBuffer(),
-        ),
-      ),
+            .toBuffer()
+        )
+      )
     )
     .then(images => toIco(images))
     .then(buf => fs.writeFileSync(dest, buf))
