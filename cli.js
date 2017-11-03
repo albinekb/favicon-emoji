@@ -4,7 +4,6 @@ const path = require('path')
 
 const emojilib = require('emojilib')
 const neodoc = require('neodoc')
-const sharp = require('sharp')
 const toIco = require('to-ico')
 
 const render = require('./lib/render')
@@ -54,20 +53,11 @@ if (args['--emoji'] && args['--destination']) {
   const start = Date.now()
   const hrstart = process.hrtime()
   Promise.resolve(emoji)
-    .then(char => render(char, { size: 256 }))
-    .then(image => {
-      if (pngDest) fs.writeFileSync(pngDest, image)
-      return image
+    .then(char => render(char, [16, 32, 48, 64, 128, 256]))
+    .then(images => {
+      if (pngDest) fs.writeFileSync(pngDest, images[5])
+      return images
     })
-    .then(image =>
-      Promise.all(
-        [16, 32, 48, 64, 128, 256].map(size =>
-          sharp(image)
-            .resize(size, size)
-            .toBuffer()
-        )
-      )
-    )
     .then(images => toIco(images))
     .then(buf => fs.writeFileSync(dest, buf))
     .then(() => {
