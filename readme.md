@@ -41,6 +41,7 @@ favicon-emoji --help
   Options:
     -d, --destination <value>  favicon destination     [default: "./favicon.ico"]
     -e, --emoji <value>        choose emoji            [default: "✨"]
+    -m, --minimum              create favicon with selected sizes (16x16, 32x32, 48x48)
     -h, --help                 Output usage information
     -l, --list                 show list of available emojis
     -p, --png <value>          png output path         [default: "./favicon.png"]

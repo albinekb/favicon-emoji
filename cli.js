@@ -31,6 +31,7 @@ Usage:
 Options:
   -d, --destination <value>  favicon destination     [default: "./favicon.ico"]
   -e, --emoji <value>        choose emoji            [default: "✨"]
+  -m, --minimum              create favicon with selected sizes (16x16, 32x32, 48x48)
   -h, --help                 Output usage information
   -l, --list                 show list of available emojis
   -p, --png <value>          png output path         [default: "./favicon.png"]
@@ -49,16 +50,17 @@ if (args['--emoji'] && args['--destination']) {
   const dest = path.resolve(args['--destination'])
   const pngDest = path.resolve(args['--png'])
   const emoji = findEmoji(args['--emoji'])
+  const sizes = args['--minimum'] ? [16, 32, 48] : [16, 32, 48, 64, 128, 256]
 
   const start = Date.now()
   const hrstart = process.hrtime()
   Promise.resolve(emoji)
-    .then(char => render(char, [16, 32, 48, 64, 128, 256]))
+    .then(char => render(char, sizes))
     .then(images => {
-      if (pngDest) fs.writeFileSync(pngDest, images[5])
+      if (pngDest) fs.writeFileSync(pngDest, images[images.length - 1])
       return images
     })
-    .then(images => toIco(images))
+    .then(images => toIco(images, {sizes}))
     .then(buf => fs.writeFileSync(dest, buf))
     .then(() => {
       const end = Date.now() - start
