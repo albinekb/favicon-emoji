@@ -11,7 +11,7 @@
     "emojilib": "^2.2.9",
     "neodoc": "^1.4.0",
     "opn": "^4.0.2",
-    "puppeteer": "^0.12.0",
+    "puppeteer": "^1.3.0",
     "to-ico": "^1.1.5"
   },
   "bin": {
