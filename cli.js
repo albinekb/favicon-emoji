@@ -5,6 +5,7 @@ const path = require('path')
 const emojilib = require('emojilib')
 const neodoc = require('neodoc')
 const toIco = require('to-ico')
+const open = require('open')
 
 const render = require('./lib/render')
 
@@ -41,9 +42,10 @@ Options:
 const args = neodoc.run(usage)
 
 if (args['--list']) {
-  require('opn')('https://www.webpagefx.com/tools/emoji-cheat-sheet/')
-  console.log('🕸 Opened emoji cheat sheet in browser')
-  process.exit(0)
+  console.log('🕸 Opening emoji cheat sheet in browser')
+  open('https://www.webpagefx.com/tools/emoji-cheat-sheet/').then(() => {
+    process.exit(0)
+  })
 }
 
 if (args['--emoji'] && args['--destination']) {
